@@ -1,0 +1,18 @@
+{
+  "name": "metadata-extractor",
+  "version": "1.0.0",
+  "description": "Metadata Extractors that pulls RDFs & update DB",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Renish B",
+  "license": "ISC",
+  "dependencies": {
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.9",
+    "sequelize-cli": "^5.5.1",
+    "xml2js": "^0.4.23"
+  }
+}
