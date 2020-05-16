@@ -1,10 +1,18 @@
-const fs = require("fs");
-const util = require("util");
-const xml2js = require("xml2js");
+import "@babel/polyfill";
+import fs from "fs";
+import util from "util";
+import xml2js from "xml2js";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+import ("#root/db");
 
 const parser = new xml2js.Parser();
 
-fs.readFile(__dirname + '/cache/epub/61799/pg61799.rdf', (err, data) => {
+const { Books } = require("./models/Books");
+
+fs.readFile(__dirname + '/../cache/epub/61799/pg61799.rdf', (err, data) => {
     parser.parseString(data, (err, result) => {
         // console.log(util.inspect(result, false, null));
         const rJson = JSON.parse(JSON.stringify(result));
@@ -22,6 +30,9 @@ fs.readFile(__dirname + '/cache/epub/61799/pg61799.rdf', (err, data) => {
         }
 
         console.log(ebook);
+
+        //const books = Books.findAll();
+        //console.log(books);
 
         console.log('Done');
     })

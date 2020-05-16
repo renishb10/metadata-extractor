@@ -4,15 +4,28 @@
   "description": "Metadata Extractors that pulls RDFs & update DB",
   "main": "app.js",
   "scripts": {
+    "dev": "babel-watch -L src/app.js",
+    "watch": "babel-watch -L src/app.js",
+    "db:migrate": "sequelize db:migrate",
+    "db:migrate:undo": "sequelize db:migrate:undo",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Renish B",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.6",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "dotenv": "^8.2.0",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.9",
     "sequelize-cli": "^5.5.1",
     "xml2js": "^0.4.23"
+  },
+  "devDependencies": {
+    "babel-node": "^0.0.1-security",
+    "babel-watch": "^7.0.0"
   }
 }
