@@ -6,17 +6,10 @@ module.exports.up = (queryInterface, DataTypes) => {
             type: DataTypes.INTEGER.UNSIGNED
         },
         title: {
-            allowNull: false,
-            type: DataTypes.STRING
+            type: DataTypes.STRING(1275)
         },
 
         authors: {
-            allowNull: false,
-            type: DataTypes.STRING,
-        },
-
-        authors: {
-            allowNull: false,
             type: DataTypes.STRING,
         },
 
@@ -27,38 +20,33 @@ module.exports.up = (queryInterface, DataTypes) => {
 
         publicationDate: {
             allowNull: false,
-            type: DataTypes.STRING,
+            type: DataTypes.DATE,
         },
 
         language: {
-            allowNull: false,
             type: DataTypes.STRING,
         },
 
         subjects: {
-            allowNull: false,
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(1275),
         },
 
         rights: {
             allowNull: false,
             type: DataTypes.STRING,
+        },
+
+        createdAt: {
+            type: DataTypes.DATE
+        },
+    
+        updatedAt: {
+            type: DataTypes.DATE
         }
     },
     {
-        charset: "utf8"
+        charset: "utf8",
     })
 };
 
 module.exports.down = queryInterface => queryInterface.dropTable("books");
-
-/* 
-            id: rawEbook['$']['rdf:about'],
-            title: rawEbook['dcterms:title'],
-            authors: rawEbook['dcterms:creator'][0]['pgterms:agent'][0]['pgterms:name'],
-            publisher: 'Project Gutenberg',
-            publicationDate: rawEbook['dcterms:issued'][0]._,
-            language: rawEbook['dcterms:language'][0]['rdf:Description'][0]['rdf:value'][0]._,
-            subjects: rawEbook['dcterms:subject'],
-            rights: rawEbook['dcterms:rights'][0],
-*/

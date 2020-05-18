@@ -1,8 +1,8 @@
-import { DataTypes, Model } from "sequelize";
+const { DataTypes, Model } = require("sequelize");
 
-import sequelize from "../db";
+const sequelize = require("../db");
 
-export class Books extends Model {}
+class Books extends Model {}
 Books.init({
     id: {
         allowNull: false,
@@ -10,17 +10,10 @@ Books.init({
         type: DataTypes.INTEGER.UNSIGNED
     },
     title: {
-        allowNull: false,
-        type: DataTypes.STRING
+        type: DataTypes.STRING(1275)
     },
 
     authors: {
-        allowNull: false,
-        type: DataTypes.STRING,
-    },
-
-    authors: {
-        allowNull: false,
         type: DataTypes.STRING,
     },
 
@@ -31,24 +24,52 @@ Books.init({
 
     publicationDate: {
         allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.DATE,
     },
 
     language: {
-        allowNull: false,
         type: DataTypes.STRING,
     },
 
     subjects: {
-        allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(1275),
     },
 
     rights: {
         allowNull: false,
         type: DataTypes.STRING,
+    },
+
+    createdAt: {
+        type: DataTypes.DATE
+    },
+
+    updatedAt: {
+        type: DataTypes.DATE
     }
 }, {
     modelName: "books",
-    sequelize
+    sequelize,
+    indexes: [
+        {
+            // Indexing publicationDate (Usefull when used BETWEEN queries)
+            fields: ['title']
+        },
+        {
+            // Indexing publicationDate (Usefull when used BETWEEN queries)
+            fields: ['authors']
+        },
+        {
+            // Indexing publicationDate (Usefull when used BETWEEN queries)
+            fields: ['publicationDate']
+        },
+        {
+            // Indexing publicationDate (Usefull when used BETWEEN queries)
+            fields: ['authors', 'title', 'publicationDate']
+        }
+    ]
 });
+
+module.exports = {
+    Books,
+}
